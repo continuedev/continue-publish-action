@@ -1,6 +1,6 @@
 # Continue Publish Action
 
-This action publishes a new version of your Continue package
+This action publishes a new version of your Continue package(s)
 
 ## Inputs
 
@@ -8,9 +8,9 @@ This action publishes a new version of your Continue package
 
 **Required** The slug of the package to publish
 
-### `filepath`
+### `filepaths`
 
-**Required** The path to your package's YAML definition file
+**Required** An array of paths to your package's YAML definition files. Supports glob patterns.
 
 ### `api-key`
 
@@ -38,6 +38,7 @@ jobs:
         uses: continuedev/continue-publish-action
         with:
           slug: continuedev/python-assistant
-          filepath: ./path/to/config.yaml
+          filepaths:
+            - ./path/to/config.yaml
           api-key: ${{ secrets.CONTINUE_API_KEY }}
 ```

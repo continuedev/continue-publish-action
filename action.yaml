@@ -1,11 +1,11 @@
 name: "Continue Publish Action"
-description: "Publish a new version of your Continue package"
+description: "Publish a new version of your Continue package(s)"
 inputs:
   slug:
     description: "The slug of the package to publish"
     required: true
-  filepath:
-    description: "The path to your package's YAML definition file"
+  filepaths:
+    description: "An array of paths to your package's YAML definition files. Supports glob patterns."
     required: true
   continue-api-domain:
     description: "The domain of the Continue platform to publish to. For internal testing."
