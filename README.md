@@ -39,4 +39,5 @@ jobs:
         with:
           slug: continuedev/python-assistant
           filepath: ./path/to/config.yaml
+          api-key: ${{ secrets.CONTINUE_API_KEY }}
 ```
