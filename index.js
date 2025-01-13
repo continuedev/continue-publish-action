@@ -45,7 +45,7 @@ async function run() {
       // Check if the pattern exactly matches a directory
       const stats = fs.statSync(pathPattern);
       if (stats.isDirectory()) {
-        adjustedPattern = path.join(pathPattern, "**");
+        adjustedPattern = path.join(pathPattern, "**", "*.yaml");
       }
     } catch (err) {
       // If path doesn't exist, keep the original pattern
