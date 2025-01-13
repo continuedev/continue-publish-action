@@ -46,7 +46,7 @@ Options:
 async function run() {
   try {
     // Get inputs
-    const packagesInput = getInput("packages", { required: true });
+    const packagesInput = getMultilineInput("packages", { required: true });
     const packages = JSON.parse(packagesInput); // has path, slug
 
     const continueApiDomain =
