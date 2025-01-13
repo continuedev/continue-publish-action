@@ -1,6 +1,7 @@
 const core = require("@actions/core");
 const fs = require("fs");
 const path = require("path");
+const glob = require("glob");
 
 function getInput(name, options) {
   // Check if running in GitHub Actions environment
@@ -30,35 +31,46 @@ function getInput(name, options) {
   return value;
 }
 
-// If running directly from CLI (not in GitHub Actions)
-if (!process.env.GITHUB_ACTIONS && require.main === module) {
-  console.log(`
-Usage:
-  node script.js --packages '{"path": "...", "slug": "..."}' --api-key YOUR_API_KEY [--continue-api-domain domain]
-
-Options:
-  -p, --packages            JSON string of package configurations
-  -a, --api-key            API key for authentication
-  -c, --continue-api-domain Optional domain (defaults to api.continue.dev)
-`);
-}
-
 async function run() {
   try {
     // Get inputs
-    const packagesInput = getMultilineInput("packages", { required: true });
-    const packages = JSON.parse(packagesInput); // has path, slug
-
+    const pathPattern = getInput("paths", { required: true });
+    const ownerSlug = getInput("owner-slug", { required: true });
     const continueApiDomain =
       getInput("continue-api-domain") || "api.continue.dev";
     const apiKey = getInput("api-key", { required: true });
 
-    if (packages.length === 0) {
-      throw new Error("packages input is empty");
+    let adjustedPattern = pathPattern;
+    try {
+      // Check if the pattern exactly matches a directory
+      const stats = fs.statSync(pathPattern);
+      if (stats.isDirectory()) {
+        adjustedPattern = path.join(pathPattern, "**");
+      }
+    } catch (err) {
+      // If path doesn't exist, keep the original pattern
+      // This allows glob patterns that don't match actual paths to still work
     }
 
-    for (const { slug, path: filepath } of packages) {
-      const url = `https://${continueApiDomain}/packages/${slug}/versions/new`;
+    const files = glob.sync(adjustedPattern).filter((file) => {
+      try {
+        return fs.statSync(file).isFile();
+      } catch (err) {
+        core.warning(`Unable to check file: ${file}. Error: ${err.message}`);
+        return false;
+      }
+    });
+
+    if (files.length === 0) {
+      throw new Error("No yaml files found matching the pattern");
+    }
+
+    console.log(`Uploading packages:\n- ${files.join("\n- ")}`);
+
+    for (const filepath of files) {
+      const packageSlug = path.basename(filepath, ".yaml");
+      const fullSlug = `${ownerSlug}/${packageSlug}`;
+      const url = `http://${continueApiDomain}/packages/${fullSlug}/versions/new`;
 
       // Resolve the absolute path of the file
       const absoluteFilePath = path.isAbsolute(filepath)

@@ -1,16 +1,20 @@
 name: "Continue Publish Action"
 description: "Publish a new version of your Continue package(s)"
 inputs:
-  packages:
-    description: "The slug/filepath pairs of the packages to publish"
+  paths:
+    description: "The path or glob pattern of `.yaml` files to publish. The name of the file will be used as the package slug (excluding the `.yaml` extension)"
+    required: true
+  owner-slug:
+    description: "The slug of the owner of the package(s) to publish"
+    required: true
+  api-key:
+    description: "API key for authentication"
     required: true
   continue-api-domain:
     description: "The domain of the Continue platform to publish to. For internal testing."
     required: false
     default: "api.continue.dev"
-  api-key:
-    description: "API key for authentication"
-    required: false
+
 runs:
   using: "node20"
   main: "index.js"
