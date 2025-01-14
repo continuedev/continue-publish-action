@@ -65,12 +65,14 @@ async function run() {
       throw new Error("No yaml files found matching the pattern");
     }
 
-    console.log(`Uploading packages:\n- ${files.join("\n- ")}`);
+    console.log("Uploading packages...");
 
     for (const filepath of files) {
       const packageSlug = path.basename(filepath, ".yaml");
       const fullSlug = `${ownerSlug}/${packageSlug}`;
       const url = `http://${continueApiDomain}/packages/${fullSlug}/versions/new`;
+
+      console.log(`Uploading ${filepath} to ${fullSlug}`);
 
       // Resolve the absolute path of the file
       const absoluteFilePath = path.isAbsolute(filepath)
