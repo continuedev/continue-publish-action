@@ -102,10 +102,6 @@ async function run() {
         core.error(
           `Failed to upload ${filepath}: HTTP error ${response.status}: ${errorText}`
         );
-        // Optionally, you can set the action to fail here
-        core.setFailed(
-          `Failed to upload ${filepath}: HTTP error ${response.status}: ${errorText}`
-        );
         continue;
       }
 
