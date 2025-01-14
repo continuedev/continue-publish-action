@@ -101,7 +101,7 @@ async function run() {
       // Check for errors
       if (!response.ok) {
         const errorText = await response.text();
-        core.error(
+        core.setFailed(
           `Failed to upload ${filepath}: HTTP error ${response.status}: ${errorText}`
         );
         continue;
