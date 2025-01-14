@@ -70,7 +70,7 @@ async function run() {
     for (const filepath of files) {
       const packageSlug = path.basename(filepath, ".yaml");
       const fullSlug = `${ownerSlug}/${packageSlug}`;
-      const url = `http://${continueApiDomain}/packages/${fullSlug}/versions/new`;
+      const url = `https://${continueApiDomain}/packages/${fullSlug}/versions/new`;
 
       console.log(`Uploading ${filepath} to ${fullSlug}`);
 
