@@ -70,9 +70,10 @@ async function run() {
     for (const filepath of files) {
       const packageSlug = path.basename(filepath, ".yaml");
       const fullSlug = `${ownerSlug}/${packageSlug}`;
-      const url = `https://${continueApiDomain}/packages/${fullSlug}/versions/new`;
-
-      console.log(`Uploading ${filepath} to ${fullSlug}`);
+      const protocol = continueApiDomain.startsWith("localhost")
+        ? "http"
+        : "https";
+      const url = `${protocol}://${continueApiDomain}/packages/${fullSlug}/versions/new`;
 
       // Resolve the absolute path of the file
       const absoluteFilePath = path.isAbsolute(filepath)
@@ -110,7 +111,7 @@ async function run() {
       const data = await response.json();
       console.log(
         `Successfully published package version from ${filepath} to ${fullSlug}:`,
-        data
+        data.versionId
       );
     }
   } catch (error) {
