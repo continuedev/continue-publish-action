@@ -101,16 +101,15 @@ async function run() {
       // Check for errors
       if (!response.ok) {
         const errorText = await response.text();
-        console.log("KEY LENGTH: ", apiKey.length);
         core.setFailed(
-          `Failed to upload ${filepath}: HTTP error ${response.status}: ${errorText}`
+          `Failed to upload ${filepath} to ${fullSlug}: HTTP error ${response.status}: ${errorText}`
         );
         continue;
       }
 
       const data = await response.json();
       console.log(
-        `Successfully published package version for ${filepath}:`,
+        `Successfully published package version from ${filepath} to ${fullSlug}:`,
         data
       );
     }
