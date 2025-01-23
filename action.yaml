@@ -10,6 +10,10 @@ inputs:
   api-key:
     description: "API key for authentication"
     required: true
+  is-assistant:
+    description: "Whether the package is an assistant"
+    required: false
+    default: "false"
   continue-api-domain:
     description: "The domain of the Continue platform to publish to. For internal testing."
     required: false

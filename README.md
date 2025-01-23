@@ -16,6 +16,10 @@ This action publishes a new version of your Continue package(s)
 
 **Required** Your Continue API key, can be found at http://app.continue.dev/settings/api-keys
 
+### `is-assistant`
+
+**Optional** Whether the package is an assistant. Defaults to `false`.
+
 ## Example usage
 
 ```yaml
