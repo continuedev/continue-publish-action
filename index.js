@@ -102,9 +102,19 @@ async function run() {
       // Check for errors
       if (!response.ok) {
         const errorText = await response.text();
-        core.setFailed(
-          `Failed to upload ${filepath} to ${fullSlug}: HTTP error ${response.status}: ${errorText}`
-        );
+        if (
+          errorText.includes("Version") &&
+          errorText.includes("already exists")
+        ) {
+          console.log(
+            `Package version from ${filepath} already exists in ${fullSlug}`
+          );
+        } else {
+          core.setFailed(
+            `Failed to upload ${filepath} to ${fullSlug}: HTTP error ${response.status}: ${errorText}`
+          );
+        }
+
         continue;
       }
 
