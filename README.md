@@ -20,6 +20,10 @@ This action publishes a new version of your Continue package(s)
 
 **Optional** Whether the package is an assistant. Defaults to `false`.
 
+### `private`
+
+**Optional** Whether the package is private. Defaults to `false`.
+
 ## Example usage
 
 ```yaml

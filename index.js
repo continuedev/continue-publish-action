@@ -40,6 +40,7 @@ async function run() {
       getInput("continue-api-domain") || "api-test.continue.dev";
     const apiKey = getInput("api-key", { required: true });
     const isAssistant = getInput("is-assistant") === "true";
+    const private = getInput("private") === "true";
 
     let adjustedPattern = pathPattern;
     try {
@@ -97,7 +98,7 @@ async function run() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
         },
-        body: JSON.stringify({ content, isAssistant }),
+        body: JSON.stringify({ content, isAssistant, private }),
       });
 
       // Check for errors
