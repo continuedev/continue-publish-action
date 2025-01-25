@@ -1,0 +1,6 @@
+name: Continue Docs (example)
+version: 0.0.1
+
+docs:
+  - name: Continue Docs
+    startUrl: https://docs.continue.dev

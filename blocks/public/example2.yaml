@@ -1,0 +1,11 @@
+name:
+version: 0.0.1
+
+prompts:
+  - name: Review
+    description: Review diff
+    prompt: |
+      Please review the current diff. Look out for:
+      - Logic errors
+      - Typos
+      - Over-optimized code

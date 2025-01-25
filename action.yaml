@@ -1,21 +1,21 @@
 name: "Continue Publish Action"
-description: "Publish a new version of your Continue package(s)"
+description: "Publish a new version of your Continue assistant/block(s)"
 inputs:
   paths:
-    description: "The path or glob pattern of `.yaml` files to publish. The name of the file will be used as the package slug (excluding the `.yaml` extension)"
+    description: "The path or glob pattern of `.yaml` files to publish. The name of the file will be used as the assistant/block slug (excluding the `.yaml` extension)"
     required: true
   owner-slug:
-    description: "The slug of the owner of the package(s) to publish"
+    description: "The slug of the owner of the assistant/block(s) to publish"
     required: true
   api-key:
     description: "API key for authentication"
     required: true
   is-assistant:
-    description: "Whether the package is an assistant"
+    description: "Whether the assistant/block is an assistant"
     required: false
     default: "false"
   private:
-    description: "Whether the package is private"
+    description: "Whether the assistant/block is private"
     required: false
     default: "false"
   continue-api-domain:

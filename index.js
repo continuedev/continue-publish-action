@@ -67,7 +67,7 @@ async function run() {
       throw new Error("No yaml files found matching the pattern");
     }
 
-    console.log("Uploading packages...");
+    console.log("Uploading...");
 
     for (const filepath of files) {
       const packageSlug = path.basename(filepath, ".yaml");

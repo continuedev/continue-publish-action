@@ -1,16 +1,16 @@
 # Continue Publish Action
 
-This action publishes a new version of your Continue package(s)
+This action publishes a new version of your Continue assistant/block(s)
 
 ## Inputs
 
 ### `paths`
 
-**Required** The path or glob pattern of `.yaml` files to publish. The name of the file will be used as the package slug (excluding the `.yaml` extension)
+**Required** The path or glob pattern of `.yaml` files to publish. The name of the file will be used as the assistant/block slug (excluding the `.yaml` extension)
 
 ### `owner-slug`
 
-**Required** The slug of the owner of the package(s) to publish
+**Required** The slug of the owner of the assistant/block(s) to publish
 
 ### `api-key`
 
@@ -18,16 +18,16 @@ This action publishes a new version of your Continue package(s)
 
 ### `is-assistant`
 
-**Optional** Whether the package is an assistant. Defaults to `false`.
+**Optional** Whether the assistant/block is an assistant. Defaults to `false`.
 
 ### `private`
 
-**Optional** Whether the package is private. Defaults to `false`.
+**Optional** Whether the assistant/block is private. Defaults to `false`.
 
 ## Example usage
 
 ```yaml
-name: Publish Continue Package
+name: Publish to Continue
 
 on:
   push:
