@@ -76,6 +76,7 @@ async function run() {
       const protocol = continueApiDomain.startsWith("localhost")
         ? "http"
         : "https";
+      const packagePageUrl = `${protocol}://hub.continue.dev/platform/${fullSlug}`;
       const url = `${protocol}://${continueApiDomain}/packages/${fullSlug}/versions/new`;
 
       // Resolve the absolute path of the file
@@ -110,7 +111,7 @@ async function run() {
           errorText.includes("already exists")
         ) {
           console.log(
-            `Package version from ${filepath} already exists in ${fullSlug}`
+            `Package version from ${filepath} already exists at ${packagePageUrl}`
           );
         } else {
           core.setFailed(
@@ -123,7 +124,7 @@ async function run() {
 
       const data = await response.json();
       console.log(
-        `Successfully published package version from ${filepath} to ${fullSlug}:`,
+        `Successfully published package version from ${filepath} to ${packagePageUrl}:`,
         data.versionId
       );
     }
