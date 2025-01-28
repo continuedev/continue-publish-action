@@ -64,7 +64,8 @@ async function run() {
     });
 
     if (files.length === 0) {
-      throw new Error("No yaml files found matching the pattern");
+      console.log("No yaml files found matching the pattern");
+      return;
     }
 
     console.log("Uploading...");
