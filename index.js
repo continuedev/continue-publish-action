@@ -111,7 +111,7 @@ async function run() {
           errorText.includes("already exists")
         ) {
           console.log(
-            `Package version from ${filepath} already exists at ${packagePageUrl}`
+            `Version from ${filepath} already exists at ${packagePageUrl}`
           );
         } else {
           core.setFailed(
@@ -124,7 +124,7 @@ async function run() {
 
       const data = await response.json();
       console.log(
-        `Successfully published package version from ${filepath} to ${packagePageUrl}:`,
+        `Successfully published new version from ${filepath} to ${packagePageUrl}:`,
         data.versionId
       );
     }
