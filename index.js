@@ -37,7 +37,7 @@ async function run() {
     const pathPattern = getInput("paths", { required: true });
     const ownerSlug = getInput("owner-slug", { required: true });
     const continueApiDomain =
-      getInput("continue-api-domain") || "api-test.continue.dev";
+      getInput("continue-api-domain") || "api.continue.dev";
     const apiKey = getInput("api-key", { required: true });
     const isAssistant = getInput("is-assistant") === "true";
     const private = getInput("private") === "true";

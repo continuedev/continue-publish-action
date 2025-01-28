@@ -21,7 +21,7 @@ inputs:
   continue-api-domain:
     description: "The domain of the Continue platform to publish to. For internal testing."
     required: false
-    default: "api-test.continue.dev"
+    default: "api.continue.dev"
 
 runs:
   using: "node20"
