@@ -56,7 +56,11 @@ async function run() {
 
     const files = glob.sync(adjustedPattern).filter((file) => {
       try {
-        return fs.statSync(file).isFile();
+        const isFile = fs.statSync(file).isFile();
+        const hasYamlExtension =
+          file.toLowerCase().endsWith(".yaml") ||
+          file.toLowerCase().endsWith(".yml");
+        return isFile && hasYamlExtension;
       } catch (err) {
         core.warning(`Unable to check file: ${file}. Error: ${err.message}`);
         return false;
