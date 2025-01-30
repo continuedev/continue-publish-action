@@ -33,6 +33,8 @@ function getInput(name, options) {
 
 async function run() {
   try {
+    const configYamlUtils = await import("@continuedev/config-yaml");
+
     // Get inputs
     const pathPattern = getInput("paths", { required: true });
     const ownerSlug = getInput("owner-slug", { required: true });
@@ -96,6 +98,14 @@ async function run() {
 
       // Read file contents
       const content = fs.readFileSync(absoluteFilePath, "utf8");
+
+      // Lint the file
+      try {
+        configYamlUtils.parseConfigYaml(content);
+      } catch (err) {
+        core.setFailed(`⚠️ Invalid YAML file ${filepath}: ${err.message}`);
+        continue;
+      }
 
       // Make POST request using built-in fetch
       const response = await fetch(url, {

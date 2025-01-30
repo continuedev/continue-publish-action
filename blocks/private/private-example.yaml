@@ -1,0 +1,6 @@
+name: Private Example
+version: 0.0.2
+
+rules:
+  - |
+    * You are an expert in Python
