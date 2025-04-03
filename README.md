@@ -20,9 +20,13 @@ This action publishes a new version of your Continue assistant/block(s)
 
 **Optional** Whether the assistant/block is an assistant. Defaults to `false`.
 
-### `private`
+### `visibility`
 
-**Optional** Whether the assistant/block is private. Defaults to `false`.
+**Optional** Whether the assistant/block should have "public", "private", or "organization" level visibility. Defaults to "public".
+
+- `public` - The assistant/block will be visible to everyone
+- `private` - The assistant/block will only be visible to you
+- `organization` - The assistant/block will be visible to everyone in your organization
 
 ## Example usage
 
