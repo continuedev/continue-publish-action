@@ -9,3 +9,7 @@ node index.js --paths packages --api-key $CONTINUE_API_KEY --continue-api-domain
 ## Publishing
 
 To publish a new version of the action, update the `version` field in `action.yml` and commit the change. Then, create a tag and push it to GitHub.
+
+```bash
+git push --follow-tags
+```
