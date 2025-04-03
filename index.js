@@ -42,7 +42,20 @@ async function run() {
       getInput("continue-api-domain") || "api.continue.dev";
     const apiKey = getInput("api-key", { required: true });
     const isAssistant = getInput("is-assistant") === "true";
-    const private = getInput("private") === "true";
+
+    // Handle both old 'private' and new 'visibility' parameters
+    const privateInput = getInput("private");
+    const visibilityInput = getInput("visibility") || "public";
+
+    // Determine visibility value
+    let visibility;
+    if (privateInput !== "") {
+      // If private input is provided, use it for backward compatibility
+      visibility = privateInput === "true" ? "private" : "public";
+    } else {
+      // Otherwise use the new visibility input
+      visibility = visibilityInput;
+    }
 
     let adjustedPattern = pathPattern;
     try {
@@ -114,7 +127,7 @@ async function run() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
         },
-        body: JSON.stringify({ content, isAssistant, private }),
+        body: JSON.stringify({ content, isAssistant, visibility }),
       });
 
       // Check for errors

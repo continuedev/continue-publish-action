@@ -14,10 +14,10 @@ inputs:
     description: "Whether the assistant/block is an assistant"
     required: false
     default: "false"
-  private:
-    description: "Whether the assistant/block is private"
+  visibility:
+    description: "The visibility of the assistant/block (public, private, or organization)"
     required: false
-    default: "false"
+    default: "public"
   continue-api-domain:
     description: "The domain of the Continue platform to publish to. For internal testing."
     required: false
